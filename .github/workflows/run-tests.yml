@@ -24,15 +24,19 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - uses: actions/checkout@v4
 
-      - run: pip install .[style,test]
-        name: Install simplefem
-      - run: python3 -m mypy .
-        name: Run mypy checks
-
+      - name: Run mypy checks
+        run: |
+          pip install mypy
+          python3 -m mypy .
       - run: |
+          pip install ruff
           python3 -m ruff check .
           python3 -m ruff format --check .
         name: Run ruff checks
+
+      - run: pip install .[style,test]
+        name: Install simplefem
+
 
       - run: python3 -m pytest test
         name: Run unit tests
