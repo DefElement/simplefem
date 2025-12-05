@@ -1,6 +1,7 @@
 """Orthonormal polynomials."""
 
 import numpy as np
+import numpy.typing as npt
 from functools import cache
 
 
@@ -27,7 +28,7 @@ def _index(p: int, q: int) -> int:
     return (p + q + 1) * (p + q) // 2 + q
 
 
-def tabulate(points: np.ndarray[float], degree: int) -> np.ndarray[float]:
+def tabulate(points: npt.NDArray[np.float64], degree: int) -> npt.NDArray[np.float64]:
     """Tabulate orthogonal polynomials on a triangle.
 
     Args:

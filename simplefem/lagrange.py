@@ -1,6 +1,7 @@
 """Lagrange element on a triangle."""
 
 import numpy as np
+import numpy.typing as npt
 from simplefem.polynomials import tabulate
 
 
@@ -16,7 +17,7 @@ class LagrangeElementTriangle:
 
         self.coeffs = np.linalg.inv(tabulate(self.evaluation_points, degree))
 
-    def tabulate(self, points: np.ndarray[float]) -> np.ndarray[float]:
+    def tabulate(self, points: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
         """Tabulate the values of the basis functions at a set of points.
 
         Args:
