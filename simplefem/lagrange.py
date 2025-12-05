@@ -1,17 +1,18 @@
 """Lagrange element on a triangle."""
+
 import numpy as np
 from simplefem.polynomials import tabulate
 
+
 class LagrangeElementTriangle:
     """A Lagrange element on a triangle."""
+
     def __init__(self, degree):
         """Initialise."""
         self.degree = degree
-        self.evaluation_points = np.array([
-            [j/degree, i/degree]
-            for i in range(degree + 1)
-            for j in range(degree + 1 - i)
-        ])
+        self.evaluation_points = np.array(
+            [[j / degree, i / degree] for i in range(degree + 1) for j in range(degree + 1 - i)]
+        )
 
         self.coeffs = np.linalg.inv(tabulate(self.evaluation_points, degree))
 

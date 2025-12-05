@@ -1,12 +1,11 @@
 """Orthonormal polynomials."""
+
 import numpy as np
 from functools import cache
 
 
 @cache
-def _jrc(
-    a: int, n: int
-) -> tuple[float, float, float]:
+def _jrc(a: int, n: int) -> tuple[float, float, float]:
     """Get the Jacobi recurrence relation coefficients.
 
     Args:
@@ -61,7 +60,7 @@ def tabulate(points: np.ndarray[float], degree: int) -> np.ndarray[float]:
         for q in range(1, degree - p):
             a1, a2, a3 = _jrc(2 * p + 1, q)
             table[_index(q + 1, p)] = table[_index(q, p)] * ((2 * y - 1) * a1 + a2)
-            table[_index(q + 1, p)] -= table[_index(q-1, p)] * a3
+            table[_index(q + 1, p)] -= table[_index(q - 1, p)] * a3
 
     for p in range(degree + 1):
         for q in range(degree + 1 - p):

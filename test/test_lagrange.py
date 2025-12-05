@@ -1,12 +1,11 @@
 import numpy as np
 from simplefem import lagrange_element
-import pytest
 
 N = 4
 
 
 def test_lagrange1_element():
-    points = np.array([[i/N, j/N] for i in range(N + 1) for j in range(N + 1 - i)])
+    points = np.array([[i / N, j / N] for i in range(N + 1) for j in range(N + 1 - i)])
 
     e = lagrange_element(1)
     values = e.tabulate(points)
@@ -20,7 +19,7 @@ def test_lagrange1_element():
 
 
 def test_lagrange2_element():
-    points = np.array([[i/N, j/N] for i in range(N + 1) for j in range(N + 1 - i)])
+    points = np.array([[i / N, j / N] for i in range(N + 1) for j in range(N + 1 - i)])
 
     e = lagrange_element(2)
     values = e.tabulate(points)

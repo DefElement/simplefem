@@ -9,7 +9,7 @@ def test_orthogonal(degree):
     pts, wts = quadraturerules.single_integral_quadrature(
         quadraturerules.QuadratureRule.XiaoGimbutas,
         quadraturerules.Domain.Triangle,
-        max(1, 2 * degree)
+        max(1, 2 * degree),
     )
     pts = pts[:, 1:]
     values = tabulate(pts, degree)
@@ -24,7 +24,7 @@ def test_orthonormal(degree):
     pts, wts = quadraturerules.single_integral_quadrature(
         quadraturerules.QuadratureRule.XiaoGimbutas,
         quadraturerules.Domain.Triangle,
-        max(1, 2 * degree)
+        max(1, 2 * degree),
     )
     pts = pts[:, 1:]
     values = tabulate(pts, degree)
