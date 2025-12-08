@@ -21,19 +21,17 @@ class LagrangeElementTriangle:
 
         self.coeffs = np.linalg.inv(tabulate(self.evaluation_points, degree))
 
-    def tabulate(self, points: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
-        """Tabulate the values of the basis functions at a set of points.
+    def evaluate(self, basis_function_index: int, point: npt.NDArray[np.float64]) -> np.float64:
+        """Evaluate a basis function at a point.
 
         Args:
-            points: The points to evaluate at. This should be a two-dimensional array:
-                    the entry [i][j] of this should be the jth coordinate of the ith point
+            basis_function_index: The index of the basis function to evaluate.
+            point: The points to evaluate at.
 
         Returns:
-            The value of each basis function at each point. This function returns a
-            two-dimensional array: the entry [i][j] of this is the value of the ith
-            basis function at the jth point
+            The value of the basis function at the point
         """
-        return self.coeffs @ tabulate(points, self.degree)
+        return np.dot(self.coeffs[basis_function_index], tabulate(point.reshape(1, 2), self.degree))
 
 
 def lagrange_element(degree: int) -> LagrangeElementTriangle:

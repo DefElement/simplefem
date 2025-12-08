@@ -7,7 +7,7 @@ in the DefElement documentation.
 
 ## Using simplefem
 
-simplefem can be used to tabulate basis functions of Lagrange elements on triangles. To
+simplefem can be used to evaluate basis functions of Lagrange elements on triangles. To
 create a Lagrange element on a triangle, the function `simplefem.lagrange_element` can
 be used. For example, the following snippet creates a degree 3 Lagrange element on a
 triangle:
@@ -18,9 +18,9 @@ from simplefem import lagrange_element
 e = lagrange_element(3)
 ```
 
-A simplefem element can be tabulated at a set of points using the `tabulate` method. For
-example, the following snippet gets the values of the basis functions of a degree 3
-Lagrage element at the points (0.3, 0.1) and (1, 0):
+A basis function of a simplefem element can be evaluated at a point using the `evaluate`
+method. For example, the following snippet gets the value of the basis function 2 of a degree 3
+Lagrange element at the points (0.3, 0.1):
 
 ```python
 from simplefem import lagrange_element
@@ -28,8 +28,7 @@ import numpy as np
 
 e = lagrange_element(3)
 
-points = np.array([[0.3, 0.1], [1, 0]])
-values = e.tabulate(points)
+value = e.evaluate(2, np.array([0.3, 0.1]))
 ```
 
 ## Conventions
