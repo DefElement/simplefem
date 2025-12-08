@@ -1,5 +1,7 @@
 # simplefem: a simple example finite element library.
 
+[![DefElement verification](https://defelement.org/badges/simplefem.svg)](https://defelement.org/verification/simplefem.html)
+
 simplefem is a very simple finite element definition library, that is used as an example
 in the DefElement documentation.
 
