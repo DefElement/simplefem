@@ -11,7 +11,7 @@ def test_orthogonal(degree):
         quadraturerules.Domain.Triangle,
         max(1, 2 * degree),
     )
-    pts = pts[:, 1:]
+    pts = np.array([[p[1] - p[0], p[2]] for p in pts])
     values = tabulate(pts, degree)
 
     for i, v_i in enumerate(values):
@@ -26,7 +26,7 @@ def test_orthonormal(degree):
         quadraturerules.Domain.Triangle,
         max(1, 2 * degree),
     )
-    pts = pts[:, 1:]
+    pts = np.array([[p[1] - p[0], p[2]] for p in pts])
     values = tabulate(pts, degree)
 
     for v in values:
@@ -35,7 +35,7 @@ def test_orthonormal(degree):
 
 @pytest.mark.parametrize("degree", range(6))
 def test_not_nan_at_vertices(degree):
-    pts = np.array([[0, 0], [1, 0], [0, 1]])
+    pts = np.array([[-1, 0], [1, 0], [0, 1]])
 
     values = tabulate(pts, degree)
 

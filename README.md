@@ -32,7 +32,7 @@ values = e.tabulate(points)
 
 ## Conventions
 ### Reference cell
-The reference cell used by simplefem is the triangle with vertices at (0, 0), (1, 0),
+The reference cell used by simplefem is the triangle with vertices at (-1, 0), (1, 0),
 and (0, 1).
 
 ### Point ordering
@@ -41,13 +41,13 @@ are ordered lexicographically: for example, the points that define a degree 3 el
 are arranged like this:
 
 ```
-9
-|\
-7 8
-|  \
-4 5 6
-|    \
-0-1-2-3
+      9
+     / \
+    7   8
+   /     \
+  4   5   6
+ /         \
+0---1---2---3
 ```
 
 

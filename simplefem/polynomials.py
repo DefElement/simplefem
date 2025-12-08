@@ -44,7 +44,7 @@ def tabulate(points: npt.NDArray[np.float64], degree: int) -> npt.NDArray[np.flo
     table = np.zeros(((degree + 1) * (degree + 2) // 2, points.shape[0]))
     table[_index(0, 0)] = 1
 
-    x = points[:, 0]
+    x = (points[:, 0] - points[:, 1] + 1) / 2
     y = points[:, 1]
 
     for p in range(1, degree + 1):
