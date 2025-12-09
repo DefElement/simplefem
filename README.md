@@ -9,24 +9,24 @@ in the DefElement documentation.
 
 simplefem can be used to evaluate basis functions of Lagrange elements on triangles. To
 create a Lagrange element on a triangle, the function `simplefem.lagrange_element` can
-be used. For example, the following snippet creates a degree 3 Lagrange element on a
-triangle:
+be used. For example, the following snippet creates a Lagrange element on a triangle
+that has 10 basis functions:
 
 ```python
 from simplefem import lagrange_element
 
-e = lagrange_element(3)
+e = lagrange_element(10)
 ```
 
 A basis function of a simplefem element can be evaluated at a point using the `evaluate`
-method. For example, the following snippet gets the value of the basis function 2 of a degree 3
-Lagrange element at the points (0.3, 0.1):
+method. For example, the following snippet gets the value of the basis function with index 2 of a
+Lagrange element with 10 basis functions at the point (0.3, 0.1):
 
 ```python
 from simplefem import lagrange_element
 import numpy as np
 
-e = lagrange_element(3)
+e = lagrange_element(10)
 
 value = e.evaluate(2, np.array([0.3, 0.1]))
 ```
@@ -38,7 +38,7 @@ and (0, 1).
 
 ### Point ordering
 The basis functions in simplefem are all defined using point evaluations. These points
-are ordered lexicographically: for example, the points that define a degree 3 element
+are ordered lexicographically: for example, the points that define an element with ten points
 are arranged like this:
 
 ```

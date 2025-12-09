@@ -8,7 +8,7 @@ from simplefem.polynomials import tabulate
 class LagrangeElementTriangle:
     """A Lagrange element on a triangle."""
 
-    def __init__(self, degree):
+    def __init__(self, degree: int):
         """Initialise."""
         self.degree = degree
         self.evaluation_points = np.array(
@@ -34,14 +34,19 @@ class LagrangeElementTriangle:
         return np.dot(self.coeffs[basis_function_index], tabulate(point.reshape(1, 2), self.degree))
 
 
-def lagrange_element(degree: int) -> LagrangeElementTriangle:
+def lagrange_element(number_of_points: int) -> LagrangeElementTriangle:
     """Create a Lagrange element on a triangle.
 
     Args:
-        degree: The polynomial degree
+        degree: The number of points used to define the element.
 
     Returns:
         A Lagrange element on a triangle
     """
-    assert degree > 0
-    return LagrangeElementTriangle(degree)
+    degree = 1
+    while (degree + 1) * (degree + 2) // 2 < number_of_points:
+        degree += 1
+    if (degree + 1) * (degree + 2) // 2 == number_of_points:
+        return LagrangeElementTriangle(degree)
+    else:
+        raise ValueError("Invalid number of points")

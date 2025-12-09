@@ -7,7 +7,7 @@ N = 4
 def test_lagrange1_element():
     points = np.array([[i / N, j / N] for i in range(N + 1) for j in range(N + 1 - i)])
 
-    e = lagrange_element(1)
+    e = lagrange_element(3)
 
     for p in points:
         x, y = p
@@ -20,7 +20,7 @@ def test_lagrange1_element():
 def test_lagrange2_element():
     points = np.array([[i / N, j / N] for i in range(N + 1) for j in range(N + 1 - i)])
 
-    e = lagrange_element(2)
+    e = lagrange_element(6)
 
     for p in points:
         x, y = p
@@ -34,7 +34,7 @@ def test_lagrange2_element():
 
 
 def test_vertices():
-    e = lagrange_element(1)
+    e = lagrange_element(3)
     assert np.allclose(e.evaluation_points[0], [-1, 0])
     assert np.allclose(e.evaluation_points[1], [1, 0])
     assert np.allclose(e.evaluation_points[2], [0, 1])
