@@ -10,7 +10,7 @@ class LagrangeElementTriangle:
 
     def __init__(self, degree: int):
         """Initialise."""
-        self.degree = degree
+        self._degree = degree
         self.evaluation_points = np.array(
             [
                 [(2 * j + i) / degree - 1, i / degree]
@@ -31,7 +31,9 @@ class LagrangeElementTriangle:
         Returns:
             The value of the basis function at the point
         """
-        return np.dot(self.coeffs[basis_function_index], tabulate(point.reshape(1, 2), self.degree))
+        return np.dot(
+            self.coeffs[basis_function_index], tabulate(point.reshape(1, 2), self._degree)
+        )
 
 
 def lagrange_element(number_of_points: int) -> LagrangeElementTriangle:
