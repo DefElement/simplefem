@@ -37,6 +37,37 @@ jobs:
       - run: pip install .[style,test]
         name: Install simplefem
 
-
       - run: python3 -m pytest test
         name: Run unit tests
+
+  defelement-verification:
+    name: Check that DefElement verification passes
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@v4
+
+      - run: pip install .
+        name: Install simplefem
+
+      - name: Clone DefElement
+        uses: actions/checkout@v4
+        with:
+          path: ./defelement
+          repository: DefElement/DefElement
+          ref: main
+      - name: Install DefElement
+        run: |
+            cd defelement
+            python3 -m pip install .
+
+      - name: Check that simplefem verification passes
+        run: |
+          cd defelement
+          python3 verify.py --fail-on-missing-libraries --impl simplefem --assert-passing --print-reasons
